@@ -1,7 +1,16 @@
 {
   "name": "WebAppNodeExpress",
   "version": "0.0.1",
+  "description": "Web Application with Node.js & Express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Benjamin Huang",
+  "license": "MIT",
   "dependencies": {
+    "bower": "^1.8.0",
     "express": "^4.15.3"
   }
 }

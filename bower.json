@@ -1,0 +1,29 @@
+{
+  "name": "WebAppNodeExpress",
+  "description": "Web Application with Node.js & Express",
+  "main": "app.js",
+  "authors": [
+    "Benjamin Huang"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Web",
+    "Application",
+    "with",
+    "Nobe.js",
+    "and",
+    "Express"
+  ],
+  "homepage": "https://github.com/benjaminbhuang/WebAppNodeExpress",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0"
+  }
+}
