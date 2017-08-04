@@ -6,6 +6,8 @@ var port = process.env.PORT || 5000;
 var bookRouter = express.Router();
 var authorRouter = express.Router();
 
+var nav = [{Link: '/Books', Text: 'Books'}, { Link: '/Authors', Text:'Authors'}];
+
 app.use(express.static('public'));
 app.set('views', './src/views');
 
@@ -15,7 +17,7 @@ bookRouter.route('/')
     .get(function (req, res) {
         res.render('books',
             {title: 'Books',
-                nav: [{Link: '/Books', Text: 'Books'}, { Link: '/Authors', Text:'Authors'}]});
+                nav: nav});
 
     });
 
@@ -28,7 +30,7 @@ authorRouter.route('/')
     .get(function (req, res) {
         res.render('authors',
             {title: 'Authors',
-                nav: [{Link: '/Books', Text: 'Books'}, { Link: '/Authors', Text:'Authors'}]});
+                nav: nav});
     });
 
 authorRouter.route('/single')
@@ -42,9 +44,13 @@ app.use('/Authors', authorRouter);
 
 app.get('/', function (req, res) {
     res.render('index', {title: 'Index',
-        nav: [{Link: '/Books', Text: 'Books'}, { Link: '/Authors', Text:'Authors'}]});
+        nav: nav});
 });
 
 app.listen(port, function (err) {
-    console.log('running server on port '+ port);
+    if(err){
+        console.log("ERROR: "+err.message);
+    }else {
+        console.log('running server on port ' + port);
+    }
 });
