@@ -1,18 +1,36 @@
 var express = require('express');
-var bookRouter = require('./src/routes/bookRoutes');
-
 var app = express();
-
 var port = process.env.PORT || 5000;
-var authorRouter = express.Router();
+var sql = require('mssql');
 
-var nav = [{Link: '/Books', Text: 'Books'}, { Link: '/Authors', Text:'Authors'}];
+var config = {
+    user: 'bhuang',
+    password: 'password',
+    server: 'ccsdodujdf.database.windows.net', // You can use 'localhost\\instance' to connect to named instance
+    database: 'Books',
+
+    options: {
+        encrypt: true // Use this if you're on Windows Azure
+    }
+};
+
+sql.connect(config, function (err) {
+    console.log(err);
+});
+
+
+var nav = [
+    {Link: '/Books', Text: 'Book'},
+    { Link: '/Authors', Text:'Author'}
+    ];
+
+var authorRouter = express.Router();
+var bookRouter = require('./src/routes/bookRoutes')(nav);
 
 app.use(express.static('public'));
 app.set('views', './src/views');
 
 app.set('view engine', 'ejs');
-
 
 authorRouter.route('/')
     .get(function (req, res) {
