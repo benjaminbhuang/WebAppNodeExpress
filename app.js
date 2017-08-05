@@ -1,22 +1,24 @@
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 5000;
+
+/*
 var sql = require('mssql');
 
 var config = {
-    user: 'bhuang',
+    user: 'username',
     password: 'password',
-    server: 'ccsdodujdf.database.windows.net', // You can use 'localhost\\instance' to connect to named instance
+    server: 'localhost.database.windows.net', // You can use 'localhost\\instance' to connect to named instance
     database: 'Books',
-
     options: {
-        encrypt: true // Use this if you're on Windows Azure
+        encrypt: true // Use this if you're on Windows Azure true
     }
 };
 
 sql.connect(config, function (err) {
     console.log(err);
 });
+*/
 
 
 var nav = [
@@ -26,6 +28,7 @@ var nav = [
 
 var authorRouter = express.Router();
 var bookRouter = require('./src/routes/bookRoutes')(nav);
+var adminRouter= require('./src/routes/adminRoutes')(nav);
 
 app.use(express.static('public'));
 app.set('views', './src/views');
@@ -47,6 +50,8 @@ authorRouter.route('/single')
 app.use('/Books', bookRouter);
 
 app.use('/Authors', authorRouter);
+
+app.use('/Admin', adminRouter);
 
 app.get('/', function (req, res) {
     res.render('index', {title: 'Index',
