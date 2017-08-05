@@ -4,6 +4,15 @@ var mongodb = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
 var router = function (nav) {
+
+    bookRouter.use(function (req, res, next) {
+        if(!req.user){
+            res.redirect('/');
+        }else{
+            next();
+        }
+    });
+
     bookRouter.route('/')
         .get(function (req, res) {
 
